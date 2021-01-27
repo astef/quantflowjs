@@ -7,6 +7,9 @@ export default function () {
       return this.lastPrice != null;
     },
 
+    /**
+     * @param {number} price
+     */
     next(price) {
       if (this.lastPrice !== null) {
         this.lny = Math.log(price / this.lastPrice);

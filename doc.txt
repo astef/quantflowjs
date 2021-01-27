@@ -1,0 +1,5 @@
+ГО: https://www.moex.com/ru/forts/contractbaseresults.aspx
+
+API IB:
+    http://interactivebrokers.github.io/tws-api/classIBApi_1_1EClient.html
+    https://github.com/pilwon/node-ib
