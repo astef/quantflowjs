@@ -14,14 +14,17 @@ export function Instrument(session, symbol) {
 }
 
 export function Moment(moment) {
-  guard.requiredDate(moment);
+  guard.isDate(moment);
   this.moment = moment;
 }
 
 /**
  * @param {number} price
  */
-export function Price(price) {
-  guard.requiredFiniteNumber(price);
+export function Price(instrument, price) {
+  guard.isInstanceof(instrument, Instrument);
+  guard.isFiniteNumber(price);
+  // TODO check session range
+  // TODO check instrument price properties, etc.
   this.price = price;
 }

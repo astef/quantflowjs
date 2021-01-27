@@ -1,25 +1,31 @@
-import _ from "lodash";
-
 function fail() {
   throw new Error("Guard assertion failed.");
 }
 
 /**
- * @param {number} value
+ *
+ * @param {Object} value
+ * @param {Function} constructor
  */
-export function requiredNumber(value) {
-  if (typeof value !== "number") {
-    fail();
-  }
+export function isInstanceof(value, constructor) {
+  if (value instanceof constructor) return;
+  fail();
 }
 
 /**
  * @param {number} value
  */
-export function requiredFiniteNumber(value) {
-  if (!Number.isFinite(value)) {
-    fail();
-  }
+export function isNumber(value) {
+  if (typeof value === "number") return;
+  fail();
+}
+
+/**
+ * @param {number} value
+ */
+export function isFiniteNumber(value) {
+  if (Number.isFinite(value)) return;
+  fail();
 }
 
 /**
@@ -27,9 +33,8 @@ export function requiredFiniteNumber(value) {
  * @param {boolean} arg
  */
 export function isTrue(arg) {
-  if (arg !== true) {
-    fail();
-  }
+  if (arg === true) return;
+  fail();
 }
 
 /**
@@ -37,17 +42,17 @@ export function isTrue(arg) {
  * @param {any} arg
  */
 export function isTruthy(arg) {
-  if (!arg) {
-    fail();
-  }
+  if (arg) return;
+  fail();
 }
 
 /**
  *
  * @param {Date} date
  */
-export function requiredDate(date) {
-  if (!_.isDate(date)) {
-    fail();
-  }
+export function isDate(date) {
+  // todo check validitiy of the date
+  if (date instanceof Date) return;
+  fail();
 }
+
