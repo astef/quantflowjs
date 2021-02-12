@@ -1,3 +1,0 @@
-{
-  "plugins": ["./babel-plugins/babel-plugin-remove-guards.cjs"]
-}

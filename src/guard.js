@@ -21,6 +21,14 @@ export function isNumber(value) {
 }
 
 /**
+ * @param {string} value
+ */
+export function isString(value) {
+  if (typeof value === "string") return;
+  fail();
+}
+
+/**
  * @param {number} value
  */
 export function isFiniteNumber(value) {
@@ -55,4 +63,3 @@ export function isDate(date) {
   if (date instanceof Date) return;
   fail();
 }
-

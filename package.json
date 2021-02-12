@@ -1,18 +1,11 @@
 {
   "type": "module",
   "scripts": {
-    "clean": "del-cli --force ./dist && mkdirp ./dist",
-    "build": "npm run clean && babel ./src -d ./dist",
-    "start": "node ./dist/index.js",
+    "start": "node ./index.js",
     "test": "ava"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.10",
-    "@babel/core": "^7.12.10",
-    "ava": "^3.15.0",
-    "babel-plugin-minify-replace": "^0.5.0",
-    "del-cli": "^3.0.1",
-    "mkdirp": "^1.0.4"
+    "ava": "^3.15.0"
   },
   "dependencies": {
     "lodash": "^4.17.20"
