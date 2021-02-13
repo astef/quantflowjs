@@ -6,7 +6,6 @@ import { Shutdown } from "./../internal-api.js";
 export default function Ui(name, options, callback) {
   this.callback = callback;
   this.options = options;
-
   this.server = repl.start({ prompt: "> ", eval: _.bind(this.onEval, this) });
 }
 

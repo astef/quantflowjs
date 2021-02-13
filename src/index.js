@@ -5,7 +5,6 @@ import Trader from "./model/trader.js";
 import Db from "./db/db.js";
 import Gw from "./gw/gw.js";
 import Ui from "./ui/ui.js";
-import Timer from "./sample/timer-module.js";
 
 let messageBuffer = [];
 
@@ -14,26 +13,19 @@ function onInput(source, targets, payload) {
 }
 
 // initialize modules
-const ui = new Ui(
-  "repl",
-  {},
-  _.partial(onInput, "ui", ["trader", "db", "gw", "internal"])
-);
-const gw = new Gw("ib", {}, _.partial(onInput, "gw", ["trader", "db"]));
-const db = new Db("elastic", {}, _.partial(onInput, "db", ["trader"]));
-const trader = new Trader(
-  "strategy1",
-  {},
-  _.partial(onInput, "trader", ["gw", "db"])
-);
-const timer = new Timer("t", { ms: 1000 });
-
 const listeners = {
-  trader,
-  db,
-  ui,
-  gw,
-  timer,
+  trader: new Trader(
+    {
+      type: "str1",
+    },
+    _.partial(onInput, "trader", ["gw", "db"])
+  ),
+  db: new Db({ type: "elastic" }, _.partial(onInput, "db", ["trader"])),
+  ui: new Ui(
+    { type: "repl" },
+    _.partial(onInput, "ui", ["trader", "db", "gw", "internal"])
+  ),
+  gw: new Gw({ type: "ib" }, _.partial(onInput, "gw", ["trader", "db"])),
   internal: {
     exit: false,
     process(e) {

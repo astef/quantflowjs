@@ -1,19 +1,22 @@
 import _ from "lodash";
 
-const o = {
-  x: 4,
-  do() {
-    console.log(`x=${this.x}`);
-  },
+export default function Timer(options) {
+  this.x = 3;
+  this.f = options.f;
+}
+Timer.prototype = {
+  f: "src proto",
 };
 
-const caller = {
-  x: 99,
-  do(callback) {
-    callback();
-  },
-};
+const t = Object.create(Timer.prototype);
+t.constructor = Timer;
 
-// caller.do(o.do);
-caller.do(() => o.do());
-caller.do(_.partial(o.do, 1));
+const w = new Proxy(t, {});
+
+Timer.call(w, { f: "f" });
+
+console.log(t);
+console.log(Object.getPrototypeOf(t));
+console.log(t instanceof Timer);
+
+console.log(t.constructor.name);
