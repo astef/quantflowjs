@@ -5,6 +5,7 @@ import Trader from "./model/trader.js";
 import Db from "./db/db.js";
 import Gw from "./gw/gw.js";
 import Ui from "./ui/ui.js";
+import Px from "./px/px.js";
 
 let messageBuffer = [];
 
@@ -14,11 +15,14 @@ function onInput(source, targets, payload) {
 
 // initialize modules
 const listeners = {
-  trader: new Trader(
+  px: new Px(
     {
-      type: "str1",
+      type: Trader,
+      subjectOptions: {
+        type: "str1",
+      },
     },
-    _.partial(onInput, "trader", ["gw", "db"])
+    _.partial(onInput, "trader", ["gw", "db", "ui"])
   ),
   db: new Db({ type: "elastic" }, _.partial(onInput, "db", ["trader"])),
   ui: new Ui(
