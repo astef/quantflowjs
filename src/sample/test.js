@@ -1,22 +1,25 @@
-import _ from "lodash";
+import mongo from "mongodb";
 
-export default function Timer(options) {
-  this.x = 3;
-  this.f = options.f;
-}
-Timer.prototype = {
-  f: "src proto",
-};
+const { MongoClient } = mongo;
 
-const t = Object.create(Timer.prototype);
-t.constructor = Timer;
+const uri =
+  "mongodb+srv://astef:vrOHUvgVpgqYIwwq@cluster0.30tip.mongodb.net/sample_weatherdata?retryWrites=true&w=majority";
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+client.connect((err) => {
+  const collection = client.db("sample_weatherdata").collection("data");
+  // perform actions on the collection object
 
-const w = new Proxy(t, {});
+  collection.findOne(
+    (a) => {
+      return true;
+    },
+    (r) => {
+      console.log(r);
+    }
+  );
 
-Timer.call(w, { f: "f" });
-
-console.log(t);
-console.log(Object.getPrototypeOf(t));
-console.log(t instanceof Timer);
-
-console.log(t.constructor.name);
+  // client.close();
+});
