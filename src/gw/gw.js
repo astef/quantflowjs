@@ -1,4 +1,4 @@
-export default function Gw(name, options, callback) {
+export default function Gw(options, callback) {
   this.connection = {};
   console.log("gw opened");
 }

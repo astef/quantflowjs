@@ -1,4 +1,4 @@
-export default function Db(name, options, callback) {
+export default function Db(options, callback) {
   this.callback = callback;
   this.options = options;
   this.connection = {};

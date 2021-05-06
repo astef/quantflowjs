@@ -1,15 +1,15 @@
-export default function App(options, callback) {
+export default function Model(options, callback) {
   this.callback = callback;
   this.options = options;
 }
 
-App.prototype = {
+Model.prototype = {
   process(e) {},
 
   run() {
-    // open trader
+    // init app
 
-    // open state src
+    // open state src (collection name)
 
     // open market data src (with history from current state)
     // wait market data is online
