@@ -7,9 +7,9 @@ import Query from "./query/query.js";
 import Px from "./px/px.js";
 
 // INIT PHASE
-const q1 = app.init(Query, { count: 3, data: 1 });
+const q1 = app.init(Query, { count: 3, data: { increment: 1 } });
 
-const q2 = app.init(Query, { count: 5, data: 2 });
+const q2 = app.init(Query, { count: 5, data: { increment: 2 } });
 
 const px = app.init(Px, {
     importPath: "./model.js",

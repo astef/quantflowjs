@@ -14,13 +14,25 @@ export default function Px(options) {
                 console.log(`${p} = ${value}`);
                 return Reflect.set(target, p, value, receiver);
             },
+            defineProperty: (target, p, attributes) => {
+                // console.log(`Defining: ${p}`);
+                return Reflect.defineProperty(target, p, attributes);
+            },
+            setPrototypeOf(target, v) {
+                // console.log(`setPrototypeOf`);
+                return Reflect.setPrototypeOf(target, v);
+            },
         }
     );
 }
 
 Px.prototype.load = function () {
     import(this.options.importPath).then((m) => {
-        this.instance = m.apply(this.proxy, this.options.args);
+        const ctor = m[this.options.importName || "default"];
+
+        Object.setPrototypeOf(this.proxy, ctor.prototype);
+
+        this.instance = ctor.apply(this.proxy, this.options.args);
         this.onReady();
 
         this.onData({});

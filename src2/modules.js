@@ -1,5 +1,9 @@
-export const isCallback = Symbol("isCallback");
+import _ from "lodash";
 
-export function defineCallback() {
-    return (event) => {};
+export const callbackConfigProp = Symbol("callbackConfig");
+
+export function defineCallback(config) {
+    const result = (e) => {};
+    result[callbackConfigProp] = _.defaults({}, config);
+    return result;
 }
