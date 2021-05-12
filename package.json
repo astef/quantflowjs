@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "start": "node ./index.js",
+    "start": "node ./src2/index.js",
     "test": "ava"
   },
   "devDependencies": {

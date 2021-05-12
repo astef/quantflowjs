@@ -1,9 +1,45 @@
-
 function multiply(a, b) {
     c = a * b;
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 res = multiply(2, 3);
 

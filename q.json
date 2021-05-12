@@ -1,0 +1,30 @@
+{
+    "types": {
+        "Query": "./query/query.js",
+        "Px": {
+            "path": "./px/px.js",
+            "name": "default"
+        }
+    },
+    "nodes": {
+        "q1": {
+            "type": "Query",
+            "arg": { "count": 3, "data": { "increment": 1 } }
+        },
+        "q2": {
+            "type": "Query",
+            "arg": { "count": 5, "data": { "increment": 2 } }
+        },
+        "px": {
+            "type": "Px",
+            "arg": { "importPath": "./model.js", "args": [{ "value": 7 }] }
+        }
+    },
+    "links": [
+        ["px", "onReady", "q1", "execute"],
+        ["q1", "onData", "px", "handle"],
+        ["q1", "onEnd", "q2", "execute"],
+        ["q2", "onData", "px", "handle"]
+    ],
+    "activation": ["px", "load", {}]
+}
