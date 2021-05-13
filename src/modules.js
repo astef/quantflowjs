@@ -7,3 +7,4 @@ export function defineCallback(config) {
     result[callbackConfigProp] = _.defaults({}, config);
     return result;
 }
+
