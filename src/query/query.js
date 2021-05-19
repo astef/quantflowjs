@@ -1,4 +1,4 @@
-import { defineCallback } from "../modules.js";
+import { defineCallback } from "../lib.js";
 
 export default function Query(options) {
     this.count = options.count;

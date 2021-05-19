@@ -1,14 +1,23 @@
 {
     "type": "module",
     "scripts": {
-        "start": "node ./src/index.js",
+        "build": "browserify -o ./public/index.js -t [ babelify --presets [ @babel/preset-env ] ] ./src/frontend/index.js",
+        "serve": "budo src/frontend/index.js --dir public/ --live -H localhost -p 8080 -- -o ./public/index.js -t [ babelify --presets [ @babel/preset-env ] ]",
+        "start": "node ./src/index.js script.json",
         "test": "ava"
     },
     "devDependencies": {
-        "ava": "^3.15.0"
+        "@babel/core": "^7.14.3",
+        "@babel/preset-env": "^7.14.2",
+        "ava": "^3.15.0",
+        "babelify": "^10.0.0",
+        "browserify": "^17.0.0",
+        "budo": "^11.6.4"
     },
     "dependencies": {
         "lodash": "^4.17.20",
-        "mongodb": "^3.6.6"
+        "mongodb": "^3.6.6",
+        "vis": "^4.21.0-EOL",
+        "vis-network": "^9.0.4"
     }
 }

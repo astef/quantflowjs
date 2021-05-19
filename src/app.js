@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { callbackConfigProp } from "./modules.js";
+import { callbackConfigProp } from "./lib.js";
 
 export default function App() {
     this.map = new Map();

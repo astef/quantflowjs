@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-import { defineCallback } from "../modules.js";
+import { defineCallback } from "../lib.js";
 
 export default function Db(options) {
     // fields
