@@ -1,12 +1,7 @@
-import { defineCallback } from "../lib.js";
+import { defineCall } from "../lib.js";
 
 export default function Px(options) {
     this.options = options;
-
-    this.onReady = defineCallback({ activate: true });
-    this.onChange = defineCallback();
-    this.onEnd = defineCallback({ deactivate: true });
-
     this.delta = {};
 
     this.proxy = new Proxy(
@@ -59,23 +54,24 @@ export default function Px(options) {
     );
 }
 
-Px.prototype.load = function () {
-    import(this.options.importPath).then((m) => {
-        const ctor = m[this.options.importName || "default"];
+Px.prototype.load = async function () {
+    const m = await import(this.options.importPath);
 
-        Object.setPrototypeOf(this.proxy, ctor.prototype);
+    console.log('LOADED');
+    const ctor = m[this.options.importName || "default"];
 
-        this.instance = ctor.apply(this.proxy, this.options.args);
-        this.onReady();
+    Object.setPrototypeOf(this.proxy, ctor.prototype);
 
-        this.onChange({});
-    });
+    this.instance = ctor.apply(this.proxy, this.options.args);
 };
 
 Px.prototype.handle = function (e) {
+    console.log('>>>>>>>>>>>>');
+    console.log(this);
     this.proxy.handle(e);
 
     const deltaTmp = this.delta;
     this.delta = {};
-    this.onChange(deltaTmp);
+
+    return deltaTmp;
 };

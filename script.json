@@ -1,30 +1,47 @@
 {
     "types": {
-        "Query": "./query/query.js",
+        "Gen": "./test/gen.js",
+        "Log": "./test/log.js",
         "Px": {
             "path": "./px/px.js",
             "name": "default"
-        }
+        },
+        "Pipeline": "./primitives/pipeline.js",
+        "Hook": "./primitives/hook.js",
+        "Call": "./primitives/call.js"
     },
     "nodes": {
-        "q1": {
-            "type": "Query",
+        "pipe": {
+            "type": "Pipeline",
+            "arg": ["ld", "o1", "o2"]
+        },
+        "gen1": {
+            "type": "Gen",
             "arg": { "count": 3, "data": { "increment": 1 } }
         },
-        "q2": {
-            "type": "Query",
+        "gen2": {
+            "type": "Gen",
             "arg": { "count": 5, "data": { "increment": 2 } }
+        },
+        "pxhook": {
+            "type": "Hook"
         },
         "px": {
             "type": "Px",
             "arg": { "importPath": "./model.js", "args": [{ "value": 7 }] }
+        },
+        "log": {
+            "type": "Log"
         }
     },
     "links": [
-        ["px", "onReady", "q1", "execute"],
-        ["q1", "onData", "px", "handle"],
-        ["q1", "onEnd", "q2", "execute"],
-        ["q2", "onData", "px", "handle"]
+        ["pipe", "ld", "px", "load"],
+        ["pipe", "o1", "gen1", "execute"],
+        ["pipe", "o2", "gen2", "execute"],
+        ["gen1", "onData", "pxhook", "invoke"],
+        ["gen2", "onData", "pxhook", "invoke"],
+        ["pxhook", "notify", "log", "log"],
+        ["pxhook", "handle", "px", "handle"]
     ],
-    "activation": ["px", "load", {}]
+    "activation": ["pipe", "handle", 7]
 }

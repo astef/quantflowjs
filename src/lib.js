@@ -1,10 +1,11 @@
 import _ from "lodash";
 
-export const callbackConfigProp = Symbol("callbackConfig");
+export const callConfigProp = Symbol("callConfig");
 
-export function defineCallback(config) {
-    const result = (e) => {};
-    result[callbackConfigProp] = _.defaults({}, config);
+export function defineCall(config) {
+    const result = (e) => {
+        return Promise.resolve();
+    };
+    result[callConfigProp] = _.defaults({}, config);
     return result;
 }
-

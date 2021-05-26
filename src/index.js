@@ -5,3 +5,5 @@ import { readFileSync } from "fs";
 const script = JSON.parse(readFileSync(process.argv[2], { encoding: "utf-8" }));
 
 runScript(script);
+
+

@@ -3,7 +3,7 @@ import App from "./app.js";
 
 function activate(script, nodes) {
     const [nodeName, method, arg] = script.activation;
-    nodes[nodeName][method](arg);
+    return nodes[nodeName][method](arg);
 }
 
 function link(app, script, nodes) {
@@ -68,5 +68,7 @@ export default async function runScript(script) {
 
     link(app, script, nodes);
 
-    activate(script, nodes);
+    const res = await activate(script, nodes);
+
+    console.log(res);
 }
