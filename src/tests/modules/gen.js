@@ -1,4 +1,4 @@
-import { defineCall } from "../lib.js";
+import { defineCall } from "../../core/lib.js";
 
 export default function Gen(options) {
     this.count = options.count;
@@ -10,5 +10,5 @@ Gen.prototype.execute = async function (n) {
     for (let index = 0; index < this.count; index++) {
         await this.onData(this.data);
     }
-    return n + 1;
+    return (n ?? 0) + 1;
 };

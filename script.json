@@ -6,14 +6,14 @@
             "path": "./px/px.js",
             "name": "default"
         },
-        "Pipeline": "./primitives/pipeline.js",
-        "Hook": "./primitives/hook.js",
-        "Call": "./primitives/call.js"
+        "Pipeline": "./patterns/pipeline.js",
+        "Hook": "./patterns/hook.js",
+        "Call": "./patterns/call.js"
     },
     "nodes": {
         "pipe": {
             "type": "Pipeline",
-            "arg": ["ld", "o1", "o2"]
+            "arg": [{ "name": "ld", "dropResult": true }, "o1", "o2"]
         },
         "gen1": {
             "type": "Gen",

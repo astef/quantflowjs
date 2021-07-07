@@ -10,9 +10,7 @@ function MethodConfig(fn, instance) {
     this.handle =
         fn.constructor.name === "AsyncFunction"
             ? method
-            : (e) => {
-                  return Promise.resolve(method(e));
-              };
+            : (e) => Promise.resolve(method(e));
     this.subscriptions = [];
 }
 

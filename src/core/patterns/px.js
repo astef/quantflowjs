@@ -57,7 +57,6 @@ export default function Px(options) {
 Px.prototype.load = async function () {
     const m = await import(this.options.importPath);
 
-    console.log('LOADED');
     const ctor = m[this.options.importName || "default"];
 
     Object.setPrototypeOf(this.proxy, ctor.prototype);
@@ -66,8 +65,6 @@ Px.prototype.load = async function () {
 };
 
 Px.prototype.handle = function (e) {
-    console.log('>>>>>>>>>>>>');
-    console.log(this);
     this.proxy.handle(e);
 
     const deltaTmp = this.delta;
