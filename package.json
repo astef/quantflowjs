@@ -19,5 +19,10 @@
         "mongodb": "^3.6.6",
         "vis": "^4.21.0-EOL",
         "vis-network": "^9.0.4"
+    },
+    "ava": {
+        "files": [
+            "src/tests/**/*.test.js"
+        ]
     }
 }

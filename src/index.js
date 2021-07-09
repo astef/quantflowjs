@@ -1,4 +1,4 @@
-import runScript from "./run-script.js";
+import runScript from "./core/run-script.js";
 
 import { readFileSync } from "fs";
 
